@@ -2,12 +2,19 @@ class Api::ItemsController < ApiController
     before_action :authenticated?
     
     def create
-        params["item"]["list_id"] = params["list_id"]
-        item = Item.new(item_params)
-        if item.save
-            render json: item
+        if params["item"]
+            params["item"]["list_id"] = params["list_id"]
+            if params["item"]["priority"] == nil
+                params["item"]["priority"] = "2"
+            end
+            item = Item.new(item_params)
+            if item.save
+                render json: item
+            else
+                render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
+            end
         else
-            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+            render json: {errors: "Missing item attributes" }, status: :unprocessable_entity
         end
     end
     
