@@ -1,28 +1,11 @@
-== README
+##To-do API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a flexible and easy-to-use to-do list API, made as a project for my Bloc studies. Responses are in JSON format using Rails Active Model Serializers.
 
-Things you may want to cover:
+##Sample curl commands
 
-* Ruby version
+To create a new user:
+$ curl -u "myUsername":"myPassword" -d "user[username]=NewUsername" -d "user[password]=NewPassword" http://localhost:3000/api/users/
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To retrive existing users:
+$ curl -u "myUsername":"myPassword" http://localhost:3000/api/users/

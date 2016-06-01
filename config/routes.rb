@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
-    resources :users
+    resources :users do
+      resources :lists
+    end
+    # users#index  -> /api/users (GET)
+    # users#create -> /api/users (POST)
+    # lists#create -> /api/users/user_id/lists
+    
+    resources :lists, only: [] do
+      resources :items, only: [:create]
+    end
+    # items#create -> /api/lists/list_id/items
+    
+    resources :items, only: [:destroy]
+    # items#destroy -> /api/items/item_id
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
