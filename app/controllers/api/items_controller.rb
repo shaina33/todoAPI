@@ -4,9 +4,6 @@ class Api::ItemsController < ApiController
     def create
         if params["item"]
             params["item"]["list_id"] = params["list_id"]
-            if params["item"]["priority"] == nil
-                params["item"]["priority"] = "2"
-            end
             item = Item.new(item_params)
             if item.save
                 render json: item
@@ -18,9 +15,18 @@ class Api::ItemsController < ApiController
         end
     end
     
+    def update
+        item = Item.find(params[:id])
+        if item.update(item_params)
+            render json: item
+        else
+            render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+    
     private
     def item_params
-        params.require(:item).permit(:description, :priority, :list_id)
+        params.require(:item).permit(:description, :priority, :list_id, :completed)
     end
     
 end

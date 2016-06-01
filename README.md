@@ -10,9 +10,12 @@ $ curl -u "myUsername":"myPassword" -d "user[first_name]=Name" -d "user[last_nam
 To create a new list:
 $ curl -u "myUsername":"myPassword" -d "list[name]=ListName" -d http://localhost:3000/api/users/user_id/lists
 
-To create a new item (a to-do item on a list
+To create a new item (a to-do item on a list):
 $ curl -u "myUsername":"myPassword" -d "item[description]=ItemDescription" "item[priority]=#" http://localhost:3000/api/lists/list_id/items
-note: if no priority is assigned in command, the default is "2"
+default values: priority = "2"; completed = false
+
+To update an existing item:
+$ curl -X PUT -u "myUsername":"myPassword" -d "item[completed]=true" http://localhost:3000/api/users/1/lists/1/items
 
 To retrive all existing users:
 $ curl -u "myUsername":"myPassword" http://localhost:3000/api/users/

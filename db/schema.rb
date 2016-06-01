@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524181958) do
+ActiveRecord::Schema.define(version: 20160601203029) do
 
   create_table "items", force: :cascade do |t|
     t.string   "description"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160524181958) do
     t.integer  "list_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "completed"
   end
 
   add_index "items", ["list_id"], name: "index_items_on_list_id"
