@@ -1,6 +1,6 @@
 ##To-do API
 
-This is a flexible and easy-to-use to-do list API, made as a project for my Bloc studies. Responses are in JSON format using Rails Active Model Serializers.
+This is a flexible and easy-to-use to-do list API, made as a project for my studies with Bloc. Responses are in JSON format using Rails Active Model Serializers.
 
 ###Supported API Actions
 
@@ -24,7 +24,9 @@ This is a flexible and easy-to-use to-do list API, made as a project for my Bloc
 ###Models & Attributes
 
 **Users:**first_name, last_name, username, password, email (optional)
-**Lists:**name, belongs to Users
+
+**Lists:**name, belongs to User
+
 **Items:**description, priority (default = '2'), completed (default = false), belongs to List
 
 ###Sample cURL commands
@@ -41,5 +43,5 @@ $ curl -u "myUsername":"myPassword" http://localhost:3000/api/users/user_id/list
 **To update an existing item:**
 $ curl -X PUT -u "myUsername":"myPassword" -d "item[completed]=true" http://localhost:3000/api/lists/list_id/items/item_id
 
-**To destroy am existing list:**
+**To destroy an existing list:**
 $ curl -X DELETE -u "myUsername":"myPassword" http://localhost:3000/api/users/user_id/lists/list_id
