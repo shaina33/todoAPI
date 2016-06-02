@@ -1,6 +1,20 @@
 class Api::ListsController < ApiController
     before_action :authenticated?
     
+    def index
+        lists = List.all
+        render json: lists, each_serializer: ListSerializer
+    end
+    
+    def show
+        begin
+            list = List.find(params[:id])
+            render json: list
+        rescue ActiveRecord::RecordNotFound
+            render :json => {}, :status => :not_found
+        end
+    end
+    
     def create
         if params["list"]
             params["list"]["user_id"] = params["user_id"]

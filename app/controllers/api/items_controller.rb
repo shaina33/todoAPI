@@ -1,6 +1,20 @@
 class Api::ItemsController < ApiController
     before_action :authenticated?
     
+    def index
+        items = Item.all
+        render json: items, each_serializer: ItemSerializer
+    end
+    
+    def show
+        begin
+            item = Item.find(params[:id])
+            render json: item
+        rescue ActiveRecord::RecordNotFound
+            render :json => {}, :status => :not_found
+        end
+    end
+    
     def create
         if params["item"]
             params["item"]["list_id"] = params["list_id"]

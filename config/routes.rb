@@ -8,15 +8,19 @@ Rails.application.routes.draw do
     # users#update -> /api/users/user_id
     # lists#create -> /api/users/user_id/lists
     # lists#update -> /api/users/user_id/lists/list_id
+    # lists#show
+    # lists#index
     
     resources :lists, only: [] do
       resources :items, only: [:create]
     end
     # items#create -> /api/lists/list_id/items
     
-    resources :items, only: [:destroy, :update]
+    resources :items, only: [:index, :destroy, :update, :show]
     # items#destroy -> /api/items/item_id
     # items#update  -> /api/items/item_id
+    # items#show
+    # items#index
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
