@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     end
     # users#index  -> /api/users (GET)
     # users#create -> /api/users (POST)
+    # users#update -> /api/users/user_id
     # lists#create -> /api/users/user_id/lists
+    # lists#update -> /api/users/user_id/lists/list_id
     
     resources :lists, only: [] do
       resources :items, only: [:create]

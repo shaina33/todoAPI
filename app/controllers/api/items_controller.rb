@@ -20,7 +20,7 @@ class Api::ItemsController < ApiController
         if item.update(item_params)
             render json: item
         else
-            render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
         end
     end
     

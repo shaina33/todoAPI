@@ -5,10 +5,10 @@ class Item < ActiveRecord::Base
   after_initialize :set_default_values
   
   validates :description, presence: true
-  validates :priority, presence: true
+  validates :priority, inclusion: { in: %w(1, 2, 3),
+    message: "Item priority must be '1', '2', or '3'." }
   validates :list_id, presence: true
-  #validates :completed, presence: true
-  
+
   def set_default_values
     self.priority ||= "2"
     self.completed ||= false
