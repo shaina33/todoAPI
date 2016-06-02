@@ -2,7 +2,7 @@ class Api::ItemsController < ApiController
     before_action :authenticated?
     
     def index
-        items = Item.all
+        items = Item.where("list_id":params[:list_id])
         render json: items, each_serializer: ItemSerializer
     end
     

@@ -2,7 +2,7 @@ class Api::ListsController < ApiController
     before_action :authenticated?
     
     def index
-        lists = List.all
+        lists = List.where("user_id":params["user_id"])
         render json: lists, each_serializer: ListSerializer
     end
     
